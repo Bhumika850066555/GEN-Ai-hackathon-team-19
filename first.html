@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Voice Prompt Web Page</title>
+    <style>
+      #promptBox {
+        width: 300px;
+        height: 100px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      #playButton {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="promptBox"></div>
+    <button id="playButton">Play</button>
+
+    <script>
+      var promptBox = document.getElementById("promptBox");
+      var playButton = document.getElementById("playButton");
+
+      playButton.addEventListener("click", function () {
+        var promptText = prompt("Enter your prompt:");
+        promptBox.innerText = promptText;
+        speakText(promptText);
+      });
+
+      function speakText(text) {
+        var utterance = new SpeechSynthesisUtterance(text);
+        window.speechSynthesis.speak(utterance);
+      }
+    </script>
+  </body>
+</html>
